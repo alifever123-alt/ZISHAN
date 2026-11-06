@@ -1,436 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NEXUS — Gaming & AI Universe</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <style>
-    * { font-family: 'Inter', sans-serif; }
-    body { background: #09110e; color: #f5fff9; }
-    html { scroll-behavior: smooth; }
-    .glass {
-      background: rgba(255,255,255,.035);
-      border: 1px solid rgba(255,255,255,.09);
-      backdrop-filter: blur(18px);
-    }
-    .glow {
-      box-shadow: 0 0 35px rgba(25,255,133,.12);
-    }
-    .neon { color: #43ff9b; }
-    .green-btn {
-      background: linear-gradient(135deg,#38f58c,#00b875);
-      color: #04150c;
-      transition: .3s;
-    }
-    .green-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 30px #20e98a55;
-    }
-    .product-card { transition: .35s; }
-    .product-card:hover {
-      transform: translateY(-7px);
-      border-color: #35ed91;
-    }
-    .hero-bg {
-      background:
-        radial-gradient(ellipse at 75% 35%,#0e553a55,transparent 45%),
-        radial-gradient(ellipse at 15% 90%,#103a2b44,transparent 40%);
-    }
-    .image-card { overflow: hidden; }
-    .image-card img { transition: transform .5s; }
-    .image-card:hover img { transform: scale(1.07); }
-    .category-card:hover .category-icon {
-      color: #43ff9b;
-      transform: scale(1.12);
-    }
-    .category-icon { transition: .3s; }
-    ::selection { background:#24e889; color:#06130b; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS - Gaming & AI Universe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/lucide@latest/dist/umd/lucide.js">
+    <style>
+        { font-family: 'Inter', sans-serif; }
+        body { background: #09110e; color: #fffff9; }
+        html { scroll-behavior: smooth; }
+        .glass {
+            background: rgba(255,255,255,.035);
+            border: 1px solid rgba(255,255,255,.09);
+            backdrop-filter: blur(18px);
+        }
+        .glow {
+            box-shadow: 0 0 35px rgba(25,255,133,.12);
+        }
+        .neon { color: #43ff9b; }
+        .green-btn {
+            background: linear-gradient(135deg, #38f58c, #008b75);
+            color: #04150c;
+            transition: .3s;
+        }
+        .green-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px #20e98a55;
+        }
+        .product-card { transition: .35s; }
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(25,255,133,.15);
+            border-color: rgba(25,255,133,.3);
+        }
+    </style>
 </head>
+<body class="selection:bg-emerald-500 selection:text-black">
 
-<body>
+    <!-- NAVBAR -->
+    <nav class="fixed top-0 left-0 w-full z-50 glass border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl green-btn flex items-center justify-center font-black text-xl shadow-lg">N</div>
+                <span class="text-2xl font-black tracking-wider text-white">NEXUS<span class="neon">.</span></span>
+            </a>
+            
+            <div class="hidden md:flex items-center gap-8 font-medium text-gray-300">
+                <a href="#digital" class="hover:text-emerald-400 transition">Digital Products</a>
+                <a href="#community" class="hover:text-emerald-400 transition">Community</a>
+                <a href="#discovery" class="hover:text-emerald-400 transition">Discovery</a>
+            </div>
 
-<!-- NAVBAR -->
-<header class="fixed top-0 w-full z-50 px-4 md:px-8">
-  <nav class="glass max-w-7xl mx-auto mt-4 rounded-2xl px-5 py-4 flex items-center justify-between">
-    <a href="#" class="flex items-center gap-2">
-      <div class="w-9 h-9 rounded-xl green-btn flex items-center justify-center font-black text-xl">N</div>
-      <span class="text-2xl font-black tracking-widest">NEXUS<span class="neon">.</span></span>
-    </a>
+            <div class="hidden md:flex items-center gap-4">
+                <button onclick="toggleSearch()" class="p-2.5 rounded-xl glass hover:border-emerald-500/50 transition">
+                    <i data-lucide="search" class="w-5 h-5 text-emerald-400"></i>
+                </button>
+                <a href="#explore" class="green-btn px-6 py-2.5 rounded-xl font-bold">Explore Now</a>
+            </div>
 
-    <div class="hidden lg:flex items-center gap-8 text-sm text-gray-400">
-      <a href="#" class="text-white hover:text-green-400">Home</a>
-      <a href="#games" class="hover:text-green-400">Games</a>
-      <a href="#ai" class="hover:text-green-400">AI Tools</a>
-      <a href="#apps" class="hover:text-green-400">Apps</a>
-      <a href="#trending" class="hover:text-green-400">Trending</a>
-    </div>
-
-    <div class="flex items-center gap-4">
-      <button onclick="toggleSearch()" class="hover:text-green-400">
-        <i data-lucide="search"></i>
-      </button>
-      <button class="hidden sm:block hover:text-green-400">
-        <i data-lucide="shopping-bag"></i>
-      </button>
-      <button onclick="toggleMenu()" class="lg:hidden">
-        <i data-lucide="menu"></i>
-      </button>
-      <a href="#categories" class="hidden sm:block green-btn px-5 py-2.5 rounded-xl text-sm font-bold">Explore Now</a>
-    </div>
-  </nav>
-
-  <div id="mobileMenu" class="hidden glass max-w-7xl mx-auto mt-2 rounded-xl p-5 space-y-4 lg:hidden">
-    <a href="#" class="block">Home</a>
-    <a href="#games" class="block">Games</a>
-    <a href="#ai" class="block">AI Tools</a>
-    <a href="#apps" class="block">Apps</a>
-    <a href="#trending" class="block">Trending</a>
-  </div>
-
-  <div id="searchPanel" class="hidden glass max-w-xl mx-auto mt-2 rounded-xl p-4">
-    <input id="searchInput" oninput="searchProducts()" type="text"
-      placeholder="Search games, apps, AI tools..."
-      class="w-full bg-transparent outline-none text-white">
-  </div>
-</header>
-
-<!-- HERO -->
-<section class="hero-bg min-h-screen pt-36 pb-20 px-5 flex items-center">
-  <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
-
-    <div>
-      <div class="inline-flex items-center gap-2 glass rounded-full px-4 py-2 text-xs text-green-300 mb-7">
-        <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-        THE NEXT GENERATION DIGITAL HUB
-      </div>
-
-      <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black leading-tight tracking-tight">
-        Power Up Your
-        <span class="neon">Gaming</span>
-        & AI World.
-      </h1>
-
-      <p class="text-gray-400 text-base md:text-lg mt-7 max-w-lg leading-8">
-        Discover powerful games, next-gen AI tools and premium applications.
-        Everything you need, all in one futuristic destination.
-      </p>
-
-      <div class="flex flex-wrap gap-4 mt-9">
-        <a href="#categories" class="green-btn px-7 py-4 rounded-xl font-bold flex items-center gap-2">
-          Explore Universe <i data-lucide="arrow-up-right" size="18"></i>
-        </a>
-        <a href="#trending" class="glass px-7 py-4 rounded-xl font-semibold hover:border-green-400">
-          Discover Trending
-        </a>
-      </div>
-
-      <div class="flex gap-10 mt-12">
-        <div>
-          <h3 class="text-3xl font-black">500<span class="neon">+</span></h3>
-          <p class="text-gray-500 text-sm mt-1">Digital Products</p>
+            <button onclick="toggleMenu()" class="md:hidden p-2.5 rounded-xl glass">
+                <i data-lucide="menu" class="w-6 h-6 text-emerald-400"></i>
+            </button>
         </div>
-        <div>
-          <h3 class="text-3xl font-black">50<span class="neon">K+</span></h3>
-          <p class="text-gray-500 text-sm mt-1">Community</p>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div id="mobileMenu" class="fixed inset-0 z-40 bg-[#09110e]/95 backdrop-blur-2xl flex flex-col items-center justify-center gap-6 text-2xl font-bold hidden">
+        <button onclick="toggleMenu()" class="absolute top-6 right-6 p-3 glass rounded-full">
+            <i data-lucide="x" class="w-6 h-6 text-emerald-400"></i>
+        </button>
+        <a href="#digital" onclick="toggleMenu()" class="hover:text-emerald-400">Digital Products</a>
+        <a href="#community" onclick="toggleMenu()" class="hover:text-emerald-400">Community</a>
+        <a href="#discovery" onclick="toggleMenu()" class="hover:text-emerald-400">Discovery</a>
+        <a href="#explore" onclick="toggleMenu()" class="green-btn px-8 py-3 rounded-2xl text-black">Explore Now</a>
+    </div>
+
+    <!-- HERO SECTION -->
+    <header class="relative min-h-screen pt-32 pb-20 flex items-center overflow-hidden">
+        <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#43ff9b_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 w-full relative z-10">
+            <!-- ALIF'S WEBSITE TOP TAG -->
+            <div class="mb-6">
+                <span class="inline-block px-4 py-1.5 rounded-full glass border border-emerald-500/40 text-emerald-400 font-extrabold text-sm md:text-base tracking-widest uppercase glow">
+                    ALIF'S WEBSITE
+                </span>
+            </div>
+
+            <div class="max-w-3xl">
+                <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-none mb-8">
+                    Power Up Your <span class="neon">Gaming & AI</span> World.
+                </h1>
+                
+                <p class="text-gray-400 text-lg sm:text-xl mb-10 max-w-2xl leading-relaxed">
+                    Discover powerful games, next-gen AI tools and premium applications. Everything you need, all in one futuristic destination.
+                </p>
+
+                <div class="flex flex-wrap gap-4 items-center">
+                    <a href="#explore" class="green-btn px-8 py-4 rounded-2xl font-bold flex items-center gap-3 text-lg">
+                        Explore Universe <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#trending" class="glass px-8 py-4 rounded-2xl font-bold hover:border-emerald-500/50 transition">
+                        Discover Trending
+                    </a>
+                </div>
+
+                <!-- STATS -->
+                <div class="grid grid-cols-3 gap-6 mt-16 pt-12 border-t border-white/10">
+                    <div>
+                        <div class="text-3xl sm:text-4xl font-black neon">500+</div>
+                        <div class="text-gray-400 text-sm mt-1">Digital Products</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl sm:text-4xl font-black neon">50K+</div>
+                        <div class="text-gray-400 text-sm mt-1">Community</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl sm:text-4xl font-black neon">24/7</div>
+                        <div class="text-gray-400 text-sm mt-1">Discovery</div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div>
-          <h3 class="text-3xl font-black">24<span class="neon">/7</span></h3>
-          <p class="text-gray-500 text-sm mt-1">Discovery</p>
+    </header>
+
+    <!-- FOOTER -->
+    <footer class="glass border-t border-white/10 py-12">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg green-btn flex items-center justify-center font-black">N</div>
+                <span class="text-xl font-bold text-white">NEXUS<span class="neon">.</span></span>
+            </div>
+            <p class="text-gray-500 text-sm">© 2026 ALIF'S WEBSITE. All rights reserved.</p>
         </div>
-      </div>
-    </div>
+    </footer>
 
-    <div class="relative">
-      <div class="absolute inset-0 bg-green-500/10 blur-[100px] rounded-full"></div>
-      <div class="relative glass rounded-3xl p-3 glow rotate-1">
-        <img
-          src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1000"
-          class="w-full h-[400px] md:h-[500px] object-cover rounded-2xl"
-          alt="Futuristic gaming setup">
-
-        <div class="absolute bottom-7 left-7 right-7 glass rounded-2xl p-5 flex items-center justify-between">
-          <div>
-            <p class="text-green-400 text-xs font-bold tracking-widest">FEATURED EXPERIENCE</p>
-            <h3 class="text-xl font-bold mt-2">Enter The Future</h3>
-            <p class="text-gray-400 text-sm mt-1">Gaming without limits.</p>
-          </div>
-          <div class="w-12 h-12 rounded-full green-btn flex items-center justify-center">
-            <i data-lucide="arrow-up-right"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- FEATURES -->
-<section class="px-5 py-10 border-y border-white/5">
-  <div class="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-7">
-    <div class="flex gap-3 items-center">
-      <i data-lucide="zap" class="neon"></i>
-      <div><h4 class="font-bold text-sm">Fast Access</h4><p class="text-gray-500 text-xs">Quick discovery</p></div>
-    </div>
-    <div class="flex gap-3 items-center">
-      <i data-lucide="shield-check" class="neon"></i>
-      <div><h4 class="font-bold text-sm">Safer Choices</h4><p class="text-gray-500 text-xs">Curated resources</p></div>
-    </div>
-    <div class="flex gap-3 items-center">
-      <i data-lucide="headset" class="neon"></i>
-      <div><h4 class="font-bold text-sm">Community</h4><p class="text-gray-500 text-xs">Helpful support</p></div>
-    </div>
-    <div class="flex gap-3 items-center">
-      <i data-lucide="crown" class="neon"></i>
-      <div><h4 class="font-bold text-sm">Pro Picks</h4><p class="text-gray-500 text-xs">Premium discoveries</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- CATEGORIES -->
-<section id="categories" class="max-w-7xl mx-auto px-5 py-24">
-  <div class="flex justify-between items-end mb-10">
-    <div>
-      <p class="neon text-xs font-bold tracking-[.3em]">DISCOVER MORE</p>
-      <h2 class="text-3xl md:text-4xl font-black mt-3">Explore By Category</h2>
-      <p class="text-gray-500 mt-3">Find your next favorite digital experience.</p>
-    </div>
-    <a href="#trending" class="hidden sm:block neon text-sm">View All →</a>
-  </div>
-
-  <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-    <a href="#games" class="category-card glass rounded-2xl p-6 hover:border-green-400">
-      <div class="category-icon text-green-400 mb-6"><i data-lucide="gamepad-2" size="34"></i></div>
-      <h3 class="font-bold text-lg">Action Games</h3>
-      <p class="text-gray-500 text-sm mt-2">Epic worlds & adventures.</p>
-      <p class="neon text-sm mt-6">Explore Games ↗</p>
-    </a>
-    <a href="#ai" class="category-card glass rounded-2xl p-6 hover:border-green-400">
-      <div class="category-icon text-purple-400 mb-6"><i data-lucide="brain-circuit" size="34"></i></div>
-      <h3 class="font-bold text-lg">AI Assistants</h3>
-      <p class="text-gray-500 text-sm mt-2">Unlock intelligent tools.</p>
-      <p class="neon text-sm mt-6">Explore AI ↗</p>
-    </a>
-    <a href="#apps" class="category-card glass rounded-2xl p-6 hover:border-green-400">
-      <div class="category-icon text-cyan-400 mb-6"><i data-lucide="smartphone" size="34"></i></div>
-      <h3 class="font-bold text-lg">Productivity Apps</h3>
-      <p class="text-gray-500 text-sm mt-2">Work smarter every day.</p>
-      <p class="neon text-sm mt-6">Explore Apps ↗</p>
-    </a>
-    <a href="#trending" class="category-card glass rounded-2xl p-6 hover:border-green-400">
-      <div class="category-icon text-yellow-400 mb-6"><i data-lucide="trending-up" size="34"></i></div>
-      <h3 class="font-bold text-lg">Trending Tools</h3>
-      <p class="text-gray-500 text-sm mt-2">Discover what's popular.</p>
-      <p class="neon text-sm mt-6">Explore Trends ↗</p>
-    </a>
-  </div>
-</section>
-
-<!-- FEATURED PRODUCTS -->
-<section id="trending" class="bg-[#0c1712] py-24 px-5">
-  <div class="max-w-7xl mx-auto">
-
-    <div class="flex flex-wrap justify-between items-end gap-5 mb-10">
-      <div>
-        <p class="neon text-xs font-bold tracking-[.3em]">HANDPICKED FOR YOU</p>
-        <h2 class="text-3xl md:text-4xl font-black mt-3">Trending & Top Picks</h2>
-        <p class="text-gray-500 mt-3">Explore the digital world's best experiences.</p>
-      </div>
-      <div class="flex flex-wrap gap-2">
-        <button onclick="filterItems('all')" class="filter-btn green-btn px-4 py-2 rounded-lg text-xs font-bold">All</button>
-        <button onclick="filterItems('game')" class="filter-btn glass px-4 py-2 rounded-lg text-xs">Games</button>
-        <button onclick="filterItems('ai')" class="filter-btn glass px-4 py-2 rounded-lg text-xs">AI Tools</button>
-        <button onclick="filterItems('app')" class="filter-btn glass px-4 py-2 rounded-lg text-xs">Apps</button>
-      </div>
-    </div>
-
-    <div id="productGrid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-
-      <article class="product-card glass rounded-2xl p-3" data-category="game" id="games">
-        <div class="image-card rounded-xl relative">
-          <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600" class="w-full h-48 object-cover" alt="Gaming setup">
-          <span class="absolute top-3 left-3 bg-green-400 text-black text-xs font-bold px-3 py-1 rounded-full">POPULAR</span>
-        </div>
-        <div class="p-3">
-          <p class="text-xs text-green-400 mt-2">ACTION / ADVENTURE</p>
-          <h3 class="font-bold text-lg mt-2">Shadow Quest</h3>
-          <p class="text-gray-500 text-sm mt-2">Enter an immersive world of adventure.</p>
-          <div class="flex justify-between items-center mt-4">
-            <span class="text-yellow-400 text-sm">★ 4.9</span>
-            <button class="green-btn px-4 py-2 rounded-lg text-xs font-bold">Explore</button>
-          </div>
-        </div>
-      </article>
-
-      <article class="product-card glass rounded-2xl p-3" data-category="ai" id="ai">
-        <div class="image-card rounded-xl">
-          <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600" class="w-full h-48 object-cover" alt="AI technology">
-        </div>
-        <div class="p-3">
-          <p class="text-xs text-purple-400 mt-2">ARTIFICIAL INTELLIGENCE</p>
-          <h3 class="font-bold text-lg mt-2">Neural AI</h3>
-          <p class="text-gray-500 text-sm mt-2">A smarter way to create and explore.</p>
-          <div class="flex justify-between items-center mt-4">
-            <span class="text-yellow-400 text-sm">★ 4.8</span>
-            <button class="green-btn px-4 py-2 rounded-lg text-xs font-bold">Launch</button>
-          </div>
-        </div>
-      </article>
-
-      <article class="product-card glass rounded-2xl p-3" data-category="app" id="apps">
-        <div class="image-card rounded-xl">
-          <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600" class="w-full h-48 object-cover" alt="Digital applications">
-        </div>
-        <div class="p-3">
-          <p class="text-xs text-cyan-400 mt-2">PRODUCTIVITY</p>
-          <h3 class="font-bold text-lg mt-2">Pixel Studio</h3>
-          <p class="text-gray-500 text-sm mt-2">Create, design and bring ideas to life.</p>
-          <div class="flex justify-between items-center mt-4">
-            <span class="text-yellow-400 text-sm">★ 4.7</span>
-            <button class="green-btn px-4 py-2 rounded-lg text-xs font-bold">Explore</button>
-          </div>
-        </div>
-      </article>
-
-      <article class="product-card glass rounded-2xl p-3" data-category="game">
-        <div class="image-card rounded-xl">
-          <img src="https://images.unsplash.com/photo-1547394765-185e1e68f34e?w=600" class="w-full h-48 object-cover" alt="Gaming controller">
-        </div>
-        <div class="p-3">
-          <p class="text-xs text-green-400 mt-2">GAMING / ARCADE</p>
-          <h3 class="font-bold text-lg mt-2">Cyber Arena</h3>
-          <p class="text-gray-500 text-sm mt-2">A new dimension of competitive gaming.</p>
-          <div class="flex justify-between items-center mt-4">
-            <span class="text-yellow-400 text-sm">★ 4.9</span>
-            <button class="green-btn px-4 py-2 rounded-lg text-xs font-bold">Explore</button>
-          </div>
-        </div>
-      </article>
-
-    </div>
-    <p id="noResults" class="hidden text-gray-400 text-center py-10">No matching products found.</p>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="max-w-7xl mx-auto px-5 py-24">
-  <div class="relative overflow-hidden rounded-3xl p-9 md:p-16 text-center border border-green-400/20"
-       style="background:radial-gradient(circle at 50% 120%,#12613c,#0c1712 65%)">
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-64 bg-green-400/10 blur-[100px]"></div>
-    <p class="neon text-xs font-bold tracking-[.3em] relative">YOUR DIGITAL UNIVERSE STARTS HERE</p>
-    <h2 class="text-3xl md:text-5xl font-black mt-5 relative">Ready To Explore The Future?</h2>
-    <p class="text-gray-400 max-w-xl mx-auto mt-5 leading-7 relative">
-      Discover powerful tools, incredible games and innovative applications in one place.
-    </p>
-    <a href="#categories" class="green-btn inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold mt-8 relative">
-      Start Exploring <i data-lucide="arrow-right" size="18"></i>
-    </a>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="border-t border-white/10 bg-[#070d0a] px-5 pt-16 pb-8">
-  <div class="max-w-7xl mx-auto grid sm:grid-cols-2 lg:grid-cols-4 gap-12">
-
-    <div>
-      <a href="#" class="text-2xl font-black tracking-widest">NEXUS<span class="neon">.</span></a>
-      <p class="text-gray-500 text-sm mt-5 leading-7">
-        Your ultimate destination for gaming, artificial intelligence and digital innovation.
-      </p>
-      <div class="flex gap-4 mt-6 text-gray-400">
-        <a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a>
-        <a href="#" aria-label="Youtube"><i data-lucide="youtube"></i></a>
-        <a href="#" aria-label="Facebook"><i data-lucide="facebook"></i></a>
-      </div>
-    </div>
-
-    <div>
-      <h3 class="font-bold mb-5">Explore</h3>
-      <div class="space-y-3 text-gray-500 text-sm">
-        <a href="#games" class="block hover:text-green-400">Games</a>
-        <a href="#ai" class="block hover:text-green-400">AI Tools</a>
-        <a href="#apps" class="block hover:text-green-400">Applications</a>
-        <a href="#trending" class="block hover:text-green-400">Trending</a>
-      </div>
-    </div>
-
-    <div>
-      <h3 class="font-bold mb-5">Company</h3>
-      <div class="space-y-3 text-gray-500 text-sm">
-        <a href="#" class="block hover:text-green-400">About Us</a>
-        <a href="#" class="block hover:text-green-400">Contact</a>
-        <a href="#" class="block hover:text-green-400">Privacy Policy</a>
-        <a href="#" class="block hover:text-green-400">Terms & Conditions</a>
-      </div>
-    </div>
-
-    <div>
-      <h3 class="font-bold mb-5">Stay Connected</h3>
-      <p class="text-gray-500 text-sm mb-4">Get updates on new digital discoveries.</p>
-      <form onsubmit="event.preventDefault(); alert('Demo subscription only!');"
-            class="flex glass rounded-xl p-1">
-        <input type="email" required placeholder="Your email"
-          class="bg-transparent outline-none w-full px-3 text-sm min-w-0">
-        <button class="green-btn rounded-lg px-4 py-2 text-xs font-bold">Join</button>
-      </form>
-    </div>
-
-  </div>
-
-  <div class="max-w-7xl mx-auto mt-14 pt-7 border-t border-white/10 flex flex-col sm:flex-row justify-between gap-4 text-gray-600 text-xs">
-    <p>© 2026 NEXUS. All rights reserved.</p>
-    <p>Designed for the Next Generation <span class="neon">✦</span></p>
-  </div>
-</footer>
-
-<script>
-  lucide.createIcons();
-
-  function toggleMenu() {
-    document.getElementById('mobileMenu').classList.toggle('hidden');
-  }
-
-  function toggleSearch() {
-    document.getElementById('searchPanel').classList.toggle('hidden');
-    if (!document.getElementById('searchPanel').classList.contains('hidden')) {
-      document.getElementById('searchInput').focus();
-    }
-  }
-
-  function filterItems(category) {
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-      btn.classList.remove('green-btn');
-      btn.classList.add('glass');
-    });
-
-    event.currentTarget.classList.remove('glass');
-    event.currentTarget.classList.add('green-btn');
-
-    document.querySelectorAll('.product-card').forEach(card => {
-      card.style.display =
-        category === 'all' || card.dataset.category === category
-          ? '' : 'none';
-    });
-    document.getElementById('noResults').classList.add('hidden');
-  }
-
-  function searchProducts() {
-    const query = document.getElementById('searchInput').value.toLowerCase();
-    let count = 0;
-
-    document.querySelectorAll('.product-card').forEach(card => {
-      const match = card.innerText.toLowerCase().includes(query);
-      card.style.display = match ? '' : 'none';
-      if (match) count++;
-    });
-
-    document.getElementById('noResults').classList.toggle('hidden', count > 0);
-    document.getElementById('trending').scrollIntoView({ behavior: 'smooth' });
-  }
-</script>
-
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+    </script>
 </body>
-          </html>
+</html>
